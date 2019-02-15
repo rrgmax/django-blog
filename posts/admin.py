@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import Post
 
 class PostModelAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "timestamp")
+    list_display = ("title", "updated", "timestamp")
     class Meta:
         model = Post
 
