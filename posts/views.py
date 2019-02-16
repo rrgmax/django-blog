@@ -12,12 +12,16 @@ def post_detail(request):
     return render(request, "index.html", context)
 
 def post_list(request):
-    context = {
-        "title": "List"
-    }
+    if request.user.is_authenticated:
+        context = {
+            "title": "My User List"
+        }
+    else:
+        context = {
+            "title": "List"
+        }
     return render(request, "index.html", context)
-    #return HttpResponse("<h1>List</h1>")
-
+    
 def post_update(request):
     return HttpResponse("<h1>Update</h1>")
 
