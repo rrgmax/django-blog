@@ -7,10 +7,13 @@ def post_create(request):
     return HttpResponse("<h1>Create</h1>")
 
 def post_detail(request):
-    context ={
-        "title": "Detail"
+    #instance = Post.objects.get(id=1)
+    instance = get_object_or_404(Post, id=3)
+    context = {
+        "title": instance.title,
+        "instance": instance,
     }
-    return render(request, "index.html", context)
+    return render(request, "post_detail.html", context)
 
 def post_list(request):
     queryset = Post.objects.all()
