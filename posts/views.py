@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 from .forms import PostForm
@@ -8,7 +8,9 @@ def post_create(request):
     form = PostForm(request.POST or None)
     if form.is_valid():
         instance = form.save(commit=False)
-        instance.save()   
+        instance.save()
+        # message sucess
+        return HttpResponseRedirect(instance.get_absolute_url())   
     context = {
         "form": form,
     }
@@ -32,11 +34,12 @@ def post_list(request):
     
 def post_update(request, id=None):
     instance = get_object_or_404(Post, id=id)
-    form = PostForm(request.POST or None)
+    form = PostForm(request.POST or None, instance=instance)
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
-
+        # message sucess
+        return HttpResponseRedirect(instance.get_absolute_url())
     context = {
         "title": instance.title,
         "instance": instance,
