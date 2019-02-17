@@ -1,34 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
+{% extends "base.html" %}
 
+{% block content %}
+<h1>{{ title }}</h1>
 
-<body>
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{% if "html_safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+{{ instance.title }}<br/>
+{{ instance.content }}<br/>
+{{ instance.timestamp }}<br/>
+{{ instance.updated }}<br/>
+{{ instance.id }}<br/>
 
-
-    <h1>{{ title }}</h1>
-
-    {% for obj in object_list %}
-
-    {{ instance.title }}<br/>
-    {{ instance.content }}<br/>
-    {{ instance.timestamp }}<br/>
-    {{ instance.updated }}<br/>
-    {{ instance.id }}<br/>
-
-    {% endfor %}
-
-
-</body>
-
-
-</html>
+{% endblock %}
