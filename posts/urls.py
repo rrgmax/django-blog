@@ -12,10 +12,10 @@ from .views import (
 app_name = 'posts'
 
 urlpatterns = [
-    path('', post_list),
+    path('', post_list, name="list"),
     path('create/', post_create),
     path('<int:id>/', post_detail, name="detail"),
     path('<int:id>/edit/', post_update, name="update"),
-    path('delete/', post_delete)
+    path('<int:id>/delete/', post_delete),
 ]
    
