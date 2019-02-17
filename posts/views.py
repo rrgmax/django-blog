@@ -12,7 +12,7 @@ def post_create(request):
         instance.save()
         # message sucess
         messages.success(request, "Successfully Created!")
-        return HttpResponseRedirect(instance.get_absolute_url())
+        return redirect(instance.get_absolute_url())
     else:
         messages.error(request, "Not Successfully Created!")   
     context = {
