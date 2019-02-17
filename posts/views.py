@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import PostForm
 from .models import Post
-# Create your views here.
+
 def post_create(request):
     form = PostForm(request.POST or None)
     if form.is_valid():
@@ -12,9 +12,7 @@ def post_create(request):
         instance.save()
         # message sucess
         messages.success(request, "Successfully Created!")
-        return redirect(instance.get_absolute_url())
-    else:
-        messages.error(request, "Not Successfully Created!")   
+        return HttpResponseRedirect(instance.get_absolute_url())
     context = {
         "form": form,
     }
